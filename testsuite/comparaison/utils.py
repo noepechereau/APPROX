@@ -46,14 +46,15 @@ def solution(graph, name, path):
 
     ratio = Fraction(len(noeuds_surveilles_approx) / len(noeuds_surveilles_opti)).limit_denominator()
     print("  Algo exact:")
-    print("    Temps: {}s".format(round(elapsed_opti, 2)))
+    print("    Temps: {}s".format(round(elapsed_opti, 4)))
     print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_opti)))
 
     print("  Algo approx:")
-    print("    Temps: {}s".format(round(elapsed_approx, 2)))
+    print("    Temps: {}s".format(round(elapsed_approx, 4)))
     print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_approx)))
     print("  Ratio approx/opti: {}".format(ratio))
     return ratio
+
 
 def gnp_random_connected_graph(n, p):
     edges = combinations(range(n), 2)
