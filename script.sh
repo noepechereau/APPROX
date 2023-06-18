@@ -17,5 +17,7 @@ elif [ $1 = "q5" ]; then
     python3 testsuite/q5/simpleGraph.py
     python3 testsuite/q5/complexTree.py
     python3 testsuite/q5/complexGraph.py
+else
+    python3 testsuite/comparaison/completeTest.py
 fi
 

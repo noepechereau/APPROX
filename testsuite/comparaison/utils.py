@@ -2,6 +2,7 @@ import importlib.machinery
 import importlib.util
 import random
 import time
+from fractions import Fraction
 from itertools import combinations, groupby
 from pathlib import Path
 import networkx as nx
@@ -24,28 +25,34 @@ loader.exec_module(q3)
 
 
 def solution(graph, name, path):
-
+    print("{}:".format(name.replace("_", " ")))
     # OPTI
     start_opti = time.time()
-    noeuds_surveilles = q5.general_case(graph)
+    noeuds_surveilles_opti = q5.general_case(graph)
     elapsed_opti = time.time() - start_opti
-    node_colors = ['red' if noeud in noeuds_surveilles else 'lightblue' for noeud in graph.nodes()]
+    node_colors = ['red' if noeud in noeuds_surveilles_opti else 'lightblue' for noeud in graph.nodes()]
     nx.draw(graph, with_labels=True, node_color=node_colors, node_size=500, font_size=10)
     plt.savefig(path + "/" + name + "_exact")
     plt.close()
 
     # APPROX
     start_approx = time.time()
-    noeuds_surveilles = q3.tree_surveillance(graph, 0, True)
+    noeuds_surveilles_approx = q3.tree_surveillance(graph, 0, True)
     elapsed_approx = time.time() - start_approx
-    node_colors = ['red' if noeud in noeuds_surveilles else 'lightblue' for noeud in graph.nodes()]
+    node_colors = ['red' if noeud in noeuds_surveilles_approx else 'lightblue' for noeud in graph.nodes()]
     nx.draw(graph, with_labels=True, node_color=node_colors, node_size=500, font_size=10)
     plt.savefig(path + "/" + name + "_approx")
     plt.close()
 
-    print("{} :".format(name.replace("_", " ")))
-    print("  Temps algo exact: {}s".format(round(elapsed_opti, 2)))
-    print("  Temps algo approx: {}s".format(round(elapsed_approx, 2)))
+    print("  Algo exact:")
+    print("    Temps: {}s".format(round(elapsed_opti, 2)))
+    print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_opti)))
+
+    print("  Algo approx:")
+    print("    Temps: {}s".format(round(elapsed_approx, 2)))
+    print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_approx)))
+    print("  Ratio approx/opti: {}".format(
+        Fraction(len(noeuds_surveilles_approx) / len(noeuds_surveilles_opti)).limit_denominator()))
 
 
 def gnp_random_connected_graph(n, p):
