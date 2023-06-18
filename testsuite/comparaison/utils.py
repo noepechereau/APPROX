@@ -25,7 +25,6 @@ loader.exec_module(q3)
 
 
 def solution(graph, name, path):
-    print("{}:".format(name.replace("_", " ")))
     # OPTI
     start_opti = time.time()
     noeuds_surveilles_opti = q5.general_case(graph)
@@ -45,6 +44,8 @@ def solution(graph, name, path):
     plt.close()
 
     ratio = Fraction(len(noeuds_surveilles_approx) / len(noeuds_surveilles_opti)).limit_denominator()
+
+    print("{}:".format(name.replace("_", " ")))
     print("  Algo exact:")
     print("    Temps: {}s".format(round(elapsed_opti, 4)))
     print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_opti)))
