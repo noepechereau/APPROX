@@ -1,22 +1,32 @@
+import queue
+import networkx as nx
+
 visited = set()
-visited_edges = set()
 overseers = set()
-def tree_surveillance(tree, node, overseer):
-    if overseer:
-        overseers.add(node)
-        for e in tree.edges(node):
-            visited_edges.add(e)
 
-    for n in tree.neighbors(node):
-        if n in visited:
+def tree_surveillance(graph, src, a):
+    q = queue.Queue()
+    q.put(src)
+    q.put(None)
+    visited.add(src)
+    overseer = True
+
+    while not q.empty():
+        node = q.get()
+        if node == None and q.empty():
+            break
+        if node == None:
+            overseer = not overseer
+            q.put(None)
             continue
-        visited.add(n)
-        tree_surveillance(tree, n, not overseer)
+        if overseer:
+            overseers.add(node)
+        for n in graph.neighbors(node):
+            if n not in visited:
+                visited.add(n)
+                q.put(n)
+    for (x,y) in nx.edges(graph):
+        if x not in overseers and y not in overseers:
+            overseers.add(x)
 
-    for e in tree.edges():
-        if e not in visited_edges:
-            overseers.add(e[0])
-            for e in tree.edges(e[0]):
-                visited_edges.add(e)
     return overseers
-
