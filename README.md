@@ -1,5 +1,11 @@
 # APPROX
 
+to be able to run the testsuite you need to run:
+
+pip -r requirements.txt
+
+-----------------------------------------
+
 to run the testsuite please run "./script.sh" + your option:
 
 ./script.sh --tree
