@@ -55,21 +55,3 @@ def solution(graph, name, path):
     print("      Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_approx)))
     print("  Ratio approx/opti: {}".format(ratio))
     return ratio
-
-
-def gnp_random_connected_graph(n, p):
-    edges = combinations(range(n), 2)
-    G = nx.Graph()
-    G.add_nodes_from(range(n))
-    if p <= 0:
-        return G
-    if p >= 1:
-        return nx.complete_graph(n, create_using=G)
-    for _, node_edges in groupby(edges, key=lambda x: x[0]):
-        node_edges = list(node_edges)
-        random_edge = random.choice(node_edges)
-        G.add_edge(*random_edge)
-        for e in node_edges:
-            if random.random() < p:
-                G.add_edge(*e)
-    return G
