@@ -25,7 +25,6 @@ loader.exec_module(q3)
 
 
 def solution(graph, name, path):
-    print("{}:".format(name.replace("_", " ")))
     # OPTI
     start_opti = time.time()
     noeuds_surveilles_opti = q5.general_case(graph)
@@ -45,15 +44,18 @@ def solution(graph, name, path):
     plt.close()
 
     ratio = Fraction(len(noeuds_surveilles_approx) / len(noeuds_surveilles_opti)).limit_denominator()
-    print("  Algo exact:")
-    print("    Temps: {}s".format(round(elapsed_opti, 2)))
-    print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_opti)))
 
-    print("  Algo approx:")
-    print("    Temps: {}s".format(round(elapsed_approx, 2)))
-    print("    Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_approx)))
+    print("{}:".format(name.replace("_", " ")))
+    print("   Algo exact:")
+    print("      Temps: {}s".format(round(elapsed_opti, 4)))
+    print("      Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_opti)))
+
+    print("   Algo approx:")
+    print("      Temps: {}s".format(round(elapsed_approx, 4)))
+    print("      Nombre de noeuds surveillés: {}".format(len(noeuds_surveilles_approx)))
     print("  Ratio approx/opti: {}".format(ratio))
     return ratio
+
 
 def gnp_random_connected_graph(n, p):
     edges = combinations(range(n), 2)
