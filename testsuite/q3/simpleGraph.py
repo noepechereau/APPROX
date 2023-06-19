@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # Test 1: Simple tree with 4 nodes
 arbre = nx.Graph()
 arbre.add_edges_from([(1, 2), (1, 3), (2,3)])
-noeuds_surveilles = q3.tree_surveillance(arbre, 1, True)
+noeuds_surveilles = q3.tree_surveillance(arbre)
 pos = nx.spring_layout(arbre)
 node_colors = ['red' if noeud in noeuds_surveilles else 'lightblue' for noeud in arbre.nodes()]
 nx.draw(arbre, pos, with_labels=True, node_color=node_colors, node_size=500, font_size=10)
