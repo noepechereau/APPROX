@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ $1 = "--tree" ]; then
     python3 testsuite/q2/binaryTree.py
     python3 testsuite/q2/starTree.py
@@ -19,6 +21,6 @@ elif [ $1 = "--opti" ]; then
     python3 testsuite/q5/simpleGraph.py
     python3 testsuite/q5/complexTree.py
     python3 testsuite/q5/complexGraph.py
-elif [ $1 = "--compare-approx-opti"]; then
+elif [ $1 = "--compare-approx-opti" ]; then
     python3 testsuite/comparaison/completeTest.py
 fi
