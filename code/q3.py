@@ -1,6 +1,6 @@
 import queue
 
-def tree_surveillance(E, src, a):
+def tree_surveillance(E):
     S = set()
     E_prime = set(E.edges)
 
