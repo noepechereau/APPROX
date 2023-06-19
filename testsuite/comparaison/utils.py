@@ -36,7 +36,7 @@ def solution(graph, name, path):
 
     # APPROX
     start_approx = time.time()
-    noeuds_surveilles_approx = q3.tree_surveillance(graph, 0, True)
+    noeuds_surveilles_approx = q3.tree_surveillance(graph)
     elapsed_approx = time.time() - start_approx
     node_colors = ['red' if noeud in noeuds_surveilles_approx else 'lightblue' for noeud in graph.nodes()]
     nx.draw(graph, with_labels=True, node_color=node_colors, node_size=500, font_size=10)
